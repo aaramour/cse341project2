@@ -1,9 +1,31 @@
-// LOCALHOST ### GET http://localhost:8080/contacts 
-### GET http://localhost:8080/contacts/6636f65548e924426e663d18 
-### GET http://localhost:8080/contacts/6636f6e448e924426e663d1a 
-### GET http://localhost:8080/contacts/6636f70648e924426e663d1b
+// LOCALHOST 
 
-// PRODUCTION Deploy ### GET https://cit341-2024.onrender.com/ 
-### GET https://cit341-2024.onrender.com/contacts/6636f65548e924426e663d18 
-### GET https://cit341-2024.onrender.com/contacts/6636f6e448e924426e663d1a 
-### GET https://cit341-2024.onrender.com/contacts/6636f70648e924426e663d1b
+### get all contacts: GET http://localhost:8080/contacts 
+
+### Get contact by ID: GET http://localhost:8080/contacts/6636f65548e924426e663d18 
+
+### Create contact: POST http://localhost:8080/contacts HTTP/1.1 content-type: application/json
+
+    {
+        "firstName":"Nico", 
+        "lastName":"Eardley", 
+        "email":"nico@test.com", 
+        "favoriteColor":"Red", 
+        "birthday":"2000-03-20"
+    }
+
+### PUT Contact: PUT http://localhost:8080/contacts/6636f70648e924426e663d1b HTTP/1.1 content-type: application/json
+
+    {
+        "firstName":"Thomas", 
+        "lastName":"Bombadil", 
+        "email":"thomasbombadil1979@gmail.com", 
+        "favoriteColor":"turquoise", 
+        "birthday":1979-01-01T04:00:00.000+00:00
+    }
+
+### ### DELETE contact: DELETE http://localhost:8080/contacts/663e62bc3d13d534e22ba91e HTTP/1.1
+
+
+
+// PRODUCTION Deploy
