@@ -24,8 +24,31 @@
         "birthday":1979-01-01T04:00:00.000+00:00
     }
 
-### ### DELETE contact: DELETE http://localhost:8080/contacts/663e62bc3d13d534e22ba91e HTTP/1.1
+### DELETE contact: DELETE http://localhost:8080/contacts/663e62bc3d13d534e22ba91e HTTP/1.1
 
 
 
 // PRODUCTION Deploy
+
+### get all contacts: GET https://cse341w03.onrender.com/contacts
+### Get contact by ID: GET https://cse341w03.onrender.com/contacts/6636f65548e924426e663d18
+### Create contact: POST https://cse341w03.onrender.com/contacts HTTP/1.1 content-type: application/json
+    {
+        "firstName":"Nico", 
+        "lastName":"Eardley", 
+        "email":"nico@test.com", 
+        "favoriteColor":"Red", 
+        "birthday":"2000-03-20"
+    }
+
+### Update Contact: PUT https://cse341w03.onrender.com/contacts/<id> HTTP/1.1 content-type: application/json
+
+    {
+        "firstName":"Nico", 
+        "lastName":"Eardley", 
+        "email":"nico@nico.com", 
+        "favoriteColor":"red", 
+        "birthday":"2000-03-21"
+    }
+
+### DELETE contact: DELETE https://cse341w03.onrender.com/contacts/<id>
