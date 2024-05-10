@@ -1,0 +1,9 @@
+// LOCALHOST ### GET http://localhost:8080/contacts 
+### GET http://localhost:8080/contacts/6636f65548e924426e663d18 
+### GET http://localhost:8080/contacts/6636f6e448e924426e663d1a 
+### GET http://localhost:8080/contacts/6636f70648e924426e663d1b
+
+// PRODUCTION Deploy ### GET https://cit341-2024.onrender.com/ 
+### GET https://cit341-2024.onrender.com/contacts/6636f65548e924426e663d18 
+### GET https://cit341-2024.onrender.com/contacts/6636f6e448e924426e663d1a 
+### GET https://cit341-2024.onrender.com/contacts/6636f70648e924426e663d1b
