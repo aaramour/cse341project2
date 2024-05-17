@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Description",
+    "description": "Contacts API",
     "version": "1.0.0"
   },
   "host": "cse341w04pa.onrender.com",
@@ -11,6 +11,16 @@
     "https"
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/contacts/": {
       "get": {
         "description": "",
