@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Contacts API",
+    "description": "Recipes API",
     "version": "1.0.0"
   },
   "host": "cse341w04pa.onrender.com",
@@ -21,7 +21,7 @@
         }
       }
     },
-    "/contacts/": {
+    "/recipes/": {
       "get": {
         "description": "",
         "produces": [
@@ -30,6 +30,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -71,7 +74,7 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/recipes/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -88,6 +91,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
