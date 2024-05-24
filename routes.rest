@@ -1,6 +1,6 @@
 // LOCALHOST 
 
-### get all contacts: GET http://localhost:8080/recipes 
+### get all recipes: GET http://localhost:8080/recipes 
 
 ### Get contact by ID: GET http://localhost:8080/recipes/665005e17ddf364c1f5e25d8 
 
@@ -22,7 +22,7 @@
         }
     }
 
-### PUT Contact: PUT http://localhost:8080/contacts/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
+### PUT Contact: PUT http://localhost:8080/recipes/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
 
     {
         "name": "Scrambled Eggs",
@@ -40,17 +40,17 @@
         }
     }
 
-### DELETE contact: DELETE http://localhost:8080/contacts/<id> HTTP/1.1
+### DELETE contact: DELETE http://localhost:8080/recipes/<id> HTTP/1.1
 
 
 
 // PRODUCTION Deploy
 
-### get all contacts: GET https://cse341w03.onrender.com/contacts
+### get all recipes: GET https://cse341project2ae.onrender.com/recipes
 
-### Get contact by ID: GET https://cse341w03.onrender.com/contacts/665005e17ddf364c1f5e25d8
+### Get contact by ID: GET https://cse341project2ae.onrender.com/recipes/665005e17ddf364c1f5e25d8
 
-### Create contact: POST https://cse341w03.onrender.com/contacts HTTP/1.1 content-type: application/json
+### Create contact: POST https://cse341project2ae.onrender.com/recipes HTTP/1.1 content-type: application/json
     {
         "name": "Peanut Butter and Jelly Sandwich",
         "type": ["lunch", "sandwich"],
@@ -67,7 +67,7 @@
         }
     }
 
-### Update Contact: PUT https://cse341w03.onrender.com/contacts/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
+### Update Contact: PUT https://cse341project2ae.onrender.com/recipes/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
 
     {
         "name": "Scrambled Eggs",
@@ -85,4 +85,4 @@
         }
     }
 
-### DELETE contact: DELETE https://cse341w03.onrender.com/contacts/<id>
+### DELETE contact: DELETE https://cse341project2ae.onrender.com/recipes/<id>
