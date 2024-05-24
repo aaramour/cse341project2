@@ -1,54 +1,88 @@
 // LOCALHOST 
 
-### get all contacts: GET http://localhost:8080/contacts 
+### get all contacts: GET http://localhost:8080/recipes 
 
-### Get contact by ID: GET http://localhost:8080/contacts/6636f65548e924426e663d18 
+### Get contact by ID: GET http://localhost:8080/recipes/665005e17ddf364c1f5e25d8 
 
-### Create contact: POST http://localhost:8080/contacts HTTP/1.1 content-type: application/json
-
-    {
-        "firstName":"Nico", 
-        "lastName":"Eardley", 
-        "email":"nico@test.com", 
-        "favoriteColor":"Red", 
-        "birthday":"2000-03-20"
-    }
-
-### PUT Contact: PUT http://localhost:8080/contacts/6636f70648e924426e663d1b HTTP/1.1 content-type: application/json
+### Create contact: POST http://localhost:8080/recipes HTTP/1.1 content-type: application/json
 
     {
-        "firstName":"Thomas", 
-        "lastName":"Bombadil", 
-        "email":"thomasbombadil1979@gmail.com", 
-        "favoriteColor":"turquoise", 
-        "birthday":1979-01-01T04:00:00.000+00:00
+        "name": "Peanut Butter and Jelly Sandwich",
+        "type": ["lunch", "sandwich"],
+        "ingredients": {
+            "group_1": [
+                { "name": "bread", "amount": 2, "unit": "slices" },
+                { "name": "jelly", "amount": 2, "unit": "tbsp" },
+                { "name": "peanut butter", "amount": 2, "unit": "tbsp" }
+            ]
+        },
+        "directions": {
+            "step_1": "Evenly spread peanut butter onto one slice of bread and jelly onto the other.",
+            "step_2": "Place the two slices of bread together so that the peanut butter and jelly are touching."
+        }
     }
 
-### DELETE contact: DELETE http://localhost:8080/contacts/663e62bc3d13d534e22ba91e HTTP/1.1
+### PUT Contact: PUT http://localhost:8080/contacts/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
+
+    {
+        "name": "Scrambled Eggs",
+        "type": "breakfast",
+        "ingredients": {
+            "group_1": [
+            { "name": "egg", "amount": 2, "unit": "whole" },
+            { "name": "salt", "amount": 0.25, "unit": "tsp" },
+            { "name": "pepper", "amount": 0.25, "unit": "tsp" }
+            ]
+        },
+        "directions": {
+            "step_1": "Whisk group_1 in small bowl and set aside.",
+            "step_2": "Pour into pan on low heat for 5-10 minutes until done, moving eggs often with turner."
+        }
+    }
+
+### DELETE contact: DELETE http://localhost:8080/contacts/<id> HTTP/1.1
 
 
 
 // PRODUCTION Deploy
 
 ### get all contacts: GET https://cse341w03.onrender.com/contacts
-### Get contact by ID: GET https://cse341w03.onrender.com/contacts/6636f65548e924426e663d18
+
+### Get contact by ID: GET https://cse341w03.onrender.com/contacts/665005e17ddf364c1f5e25d8
+
 ### Create contact: POST https://cse341w03.onrender.com/contacts HTTP/1.1 content-type: application/json
     {
-        "firstName":"Nico", 
-        "lastName":"Eardley", 
-        "email":"nico@test.com", 
-        "favoriteColor":"Red", 
-        "birthday":"2000-03-20"
+        "name": "Peanut Butter and Jelly Sandwich",
+        "type": ["lunch", "sandwich"],
+        "ingredients": {
+            "group_1": [
+                { "name": "bread", "amount": 2, "unit": "slices" },
+                { "name": "jelly", "amount": 2, "unit": "tbsp" },
+                { "name": "peanut butter", "amount": 2, "unit": "tbsp" }
+            ]
+        },
+        "directions": {
+            "step_1": "Evenly spread peanut butter onto one slice of bread and jelly onto the other.",
+            "step_2": "Place the two slices of bread together so that the peanut butter and jelly are touching."
+        }
     }
 
-### Update Contact: PUT https://cse341w03.onrender.com/contacts/<id> HTTP/1.1 content-type: application/json
+### Update Contact: PUT https://cse341w03.onrender.com/contacts/665007d126dcbdc3d3d2b0fb HTTP/1.1 content-type: application/json
 
     {
-        "firstName":"Nico", 
-        "lastName":"Eardley", 
-        "email":"nico@nico.com", 
-        "favoriteColor":"red", 
-        "birthday":"2000-03-21"
+        "name": "Scrambled Eggs",
+        "type": "breakfast",
+        "ingredients": {
+            "group_1": [
+            { "name": "egg", "amount": 2, "unit": "whole" },
+            { "name": "salt", "amount": 0.25, "unit": "tsp" },
+            { "name": "pepper", "amount": 0.25, "unit": "tsp" }
+            ]
+        },
+        "directions": {
+            "step_1": "Whisk group_1 in small bowl and set aside.",
+            "step_2": "Pour into pan on low heat for 5-10 minutes until done, moving eggs often with turner."
+        }
     }
 
 ### DELETE contact: DELETE https://cse341w03.onrender.com/contacts/<id>

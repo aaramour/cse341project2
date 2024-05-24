@@ -5,10 +5,10 @@
     "description": "Recipes API",
     "version": "1.0.0"
   },
-  "host": "cse341project2ae.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/api-docs": {
@@ -45,19 +45,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "name": {
                   "example": "any"
                 },
-                "lastName": {
+                "type": {
                   "example": "any"
                 },
-                "email": {
+                "ingredients": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "directions": {
                   "example": "any"
                 }
               }
@@ -112,19 +109,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "name": {
                   "example": "any"
                 },
-                "lastName": {
+                "type": {
                   "example": "any"
                 },
-                "email": {
+                "ingredients": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "directions": {
                   "example": "any"
                 }
               }

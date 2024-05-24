@@ -34,12 +34,22 @@ const getSingleRecipe = async (req, res) => {
 const createRecipe = async (req, res) => {
   try {
     const recipe = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      favoriteColor: req.body.favoriteColor,
-      birthday: req.body.birthday
+      name: req.body.name,
+      type: req.body.type,
+      ingredients: {},
+      directions: {}
     };
+
+    // Dynamically add ingredient groups
+    for (const [group, ingredients] of Object.entries(req.body.ingredients)) {
+      recipe.ingredients[group] = ingredients;
+    }
+
+    // Dynamically add direction steps
+    for (const [step, instruction] of Object.entries(req.body.directions)) {
+      recipe.directions[step] = instruction;
+    }
+    
     const response = await mongodb.getDb().db(process.env.DB_NAME).collection(process.env.COLLECTION).insertOne(recipe);
     if (response.acknowledged) {
       res.status(201).json(response);
@@ -55,12 +65,21 @@ const updateRecipe = async (req, res) => {
   try {
     const userId = new ObjectId(req.params.id);
     const recipe = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      favoriteColor: req.body.favoriteColor,
-      birthday: req.body.birthday
+      name: req.body.name,
+      type: req.body.type,
+      ingredients: {},
+      directions: {}
     };
+
+    // Dynamically add ingredient groups
+    for (const [group, ingredients] of Object.entries(req.body.ingredients)) {
+      recipe.ingredients[group] = ingredients;
+    }
+
+    // Dynamically add direction steps
+    for (const [step, instruction] of Object.entries(req.body.directions)) {
+      recipe.directions[step] = instruction;
+    }
     const response = await mongodb
       .getDb()
       .db(process.env.DB_NAME)
