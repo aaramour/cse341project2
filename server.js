@@ -5,7 +5,6 @@ const mongodb = require('./db/connection')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 
-
 app
   .use(bodyParser.json())
   .use((req, res, next) => {
@@ -23,8 +22,8 @@ app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
   })
-  .use('/', require('./routes'));
-
+  .use('/', require('./routes'))
+  
 
 mongodb.initDb((err, mongodb ) => {
   if (err) {

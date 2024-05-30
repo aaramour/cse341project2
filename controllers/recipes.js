@@ -16,12 +16,12 @@ const getAllRecipes = async (req, res) => {
 
 const getSingleRecipe = async (req, res) => {
   try {
-    const userId = new ObjectId(req.params.id);
+    const recipeId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb()
       .db(process.env.DB_NAME)
       .collection(process.env.COLLECTION)
-      .find({ _id: userId });
+      .find({ _id: recipeId });
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]);
@@ -63,7 +63,7 @@ const createRecipe = async (req, res) => {
 
 const updateRecipe = async (req, res) => {
   try {
-    const userId = new ObjectId(req.params.id);
+    const recipeId = new ObjectId(req.params.id);
     const recipe = {
       name: req.body.name,
       type: req.body.type,
@@ -84,7 +84,7 @@ const updateRecipe = async (req, res) => {
       .getDb()
       .db(process.env.DB_NAME)
       .collection(process.env.COLLECTION)
-      .replaceOne({ _id: userId }, recipe);
+      .replaceOne({ _id: recipeId }, recipe);
     console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).send();
@@ -98,8 +98,8 @@ const updateRecipe = async (req, res) => {
 
 const deleteRecipe = async (req, res) => {
   try {
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db(process.env.DB_NAME).collection(process.env.COLLECTION).deleteOne({ _id: userId }, true);
+    const recipeId = new ObjectId(req.params.id);
+    const response = await mongodb.getDb().db(process.env.DB_NAME).collection(process.env.COLLECTION).deleteOne({ _id: recipeId }, true);
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(204).send();
