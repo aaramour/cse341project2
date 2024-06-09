@@ -7,6 +7,7 @@ const swaggerDocument = require('./swagger-output.json');
 const axios = require('axios');
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
+require('dotenv').config()
 
 app.set('view engine', 'ejs');
 var access_token = '';
@@ -17,18 +18,6 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
-    );
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
-  })
-  .use('/', require('./routes'))
   .get('/', function(req, res) {
     res.render('pages/index',{client_id: clientID});
   })
@@ -46,6 +35,22 @@ app
       res.redirect('/success');
     })
   })
+  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+  .use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
+    );
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+  })
+  .use('/', require('./routes'))
+  .get('/', function(req, res) {
+    res.render('pages/index',{client_id: clientID});
+  })
+
   
   app.get('/success', function(req, res) {
   
