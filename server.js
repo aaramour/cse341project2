@@ -1,16 +1,33 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
+const { auth, requiresAuth  } = require('express-openid-connect');
 const app = express();
 const mongodb = require('./db/connection')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
-const axios = require('axios');
-const clientID = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-require('dotenv').config()
 
 app.set('view engine', 'ejs');
-var access_token = '';
+
+app.use(
+  auth({
+    issuerBaseURL: process.env.ISSUER_BASE_URL,
+    baseURL: process.env.BASE_URL,
+    clientID: process.env.CLIENT_ID,
+    secret: process.env.SECRET,
+    idpLogout: true,
+  })
+);
+
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app
   .use(bodyParser.json())
@@ -18,23 +35,7 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .get('/', function(req, res) {
-    res.render('pages/index',{client_id: clientID});
-  })
-  .get('/oauth-callback', (req, res) => {
-    const requestToken = req.query.code
-    axios({
-      method: 'post',
-      url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
-      // Set the content type header, so that we get the response in JSON
-      headers: {
-           accept: 'application/json'
-      }
-    }).then((response) => {
-      access_token = response.data.access_token
-      res.redirect('/success');
-    })
-  })
+
   .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -47,24 +48,7 @@ app
     next();
   })
   .use('/', require('./routes'))
-  .get('/', function(req, res) {
-    res.render('pages/index',{client_id: clientID});
-  })
 
-  
-  app.get('/success', function(req, res) {
-  
-    axios({
-      method: 'get',
-      url: `https://api.github.com/user`,
-      headers: {
-        Authorization: 'token ' + access_token
-      }
-    }).then((response) => {
-      res.render('pages/success',{ userData: response.data });
-    })
-  });
-  
 
 mongodb.initDb((err, mongodb ) => {
   if (err) {

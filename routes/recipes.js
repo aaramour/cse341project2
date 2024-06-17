@@ -5,6 +5,7 @@ const { validationRules, validate, postValidationRules } = require('../validator
 
 const recipesController = require('../controllers/recipes');
 
+
 router.get('/', recipesController.getAllRecipes);
 router.get('/:id', recipesController.getSingleRecipe);
 router.post(

@@ -37,6 +37,33 @@ const validationRules = () => {
   ]
 }
 
+const conversionValidation = () => {
+  return [
+    body('title').notEmpty(),
+    body('**.name').notEmpty(),
+    body('**.amount')
+      .toFloat()
+      .custom(async value => {
+        if (typeof(value) != 'number' || isNaN(value)) { //if it's NaN or not a number
+            throw new Error('The amount must be an integer or decimal') //throw an error
+        }
+    })
+  ]
+}
+
+const conversionPostValidation = () => {
+  return [
+    body('title') // start validate conversion title
+        .custom(async value => { //start a custom validator
+            const query = { title: value } //create a query to search for the recipe title entered in the POST request
+            const existingName = await mongodb.getDb().db(process.env.DB_NAME).collection(process.env.COLLECTION2).findOne(query); //search for the same title in the collection
+            if (existingName) { //if we find that title
+                throw new Error('A conversion with this title already exists'); //throw a custom error
+            }
+        })
+    ]
+}
+
 const validate = (req, res, next) => {
   const errors = validationResult(req)
   if (errors.isEmpty()) {
@@ -54,4 +81,6 @@ module.exports = {
   postValidationRules,
   validationRules,
   validate,
+  conversionValidation,
+  conversionPostValidation
 }
