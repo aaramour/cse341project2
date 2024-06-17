@@ -15,12 +15,13 @@ app.use(
     baseURL: process.env.BASE_URL,
     clientID: process.env.CLIENT_ID,
     secret: process.env.SECRET,
-    idpLogout: true,
+    // idpLogout: true,
   })
 );
 
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? `Logged in.<br><br> <a href="/profile">View profile</a><br><br><a href="/api-docs">Go to API Docs</a><br><br><a href="/logout">Logout</a>` : 'Logged out');
+  // require('./routes')
 });
 
 app.get('/profile', (req, res) => {
@@ -46,8 +47,8 @@ app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
   })
-  // .use('/', require('./routes'))
-
+  .use('/recipes', require('./routes/recipes')) 
+  .use('/conversions', require('./routes/conversions'))
 
 mongodb.initDb((err, mongodb ) => {
   if (err) {
