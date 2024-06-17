@@ -20,10 +20,10 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  res.send(req.oidc.isAuthenticated() ? `Logged in.<br><br> <a href="/profile">View profile</a><br><br><a href="/api-docs">Go to API Docs</a>` : 'Logged out');
 });
 
-app.get('/profile', requiresAuth(), (req, res) => {
+app.get('/profile', (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
@@ -36,7 +36,6 @@ app
     next();
   })
 
-  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -47,7 +46,7 @@ app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
   })
-  .use('/', require('./routes'))
+  // .use('/', require('./routes'))
 
 
 mongodb.initDb((err, mongodb ) => {
