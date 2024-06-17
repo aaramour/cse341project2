@@ -5,9 +5,10 @@
     "description": "Recipes API",
     "version": "1.0.0"
   },
-  "host": "cse341project2ae.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {

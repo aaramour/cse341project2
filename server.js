@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
-const { auth, requiresAuth  } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 const app = express();
 const mongodb = require('./db/connection')
 const swaggerUi = require('swagger-ui-express');
@@ -20,7 +20,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? `Logged in.<br><br> <a href="/profile">View profile</a><br><br><a href="/api-docs">Go to API Docs</a>` : 'Logged out');
+  res.send(req.oidc.isAuthenticated() ? `Logged in.<br><br> <a href="/profile">View profile</a><br><br><a href="/api-docs">Go to API Docs</a><br><br><a href="/logout">Logout</a>` : 'Logged out');
 });
 
 app.get('/profile', (req, res) => {
