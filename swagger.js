@@ -7,9 +7,19 @@ const doc = {
       description: 'Recipes API'
     },
     host: 'cse341project2ae.onrender.com',
-    schemes: ['https']
+    schemes: ['https'],
     // host: 'localhost:8080',
-    // schemes: ['http', 'https']  
+    // schemes: ['http', 'https'],
+    tags: [                   
+      {
+        name: 'recipes',             
+        description: ''       
+      },
+      {
+        name: 'conversions',             
+        description: ''       
+      }
+    ],
 };
  
 const outputFile = './swagger-output.json';

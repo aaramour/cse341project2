@@ -15,20 +15,21 @@ app.use(
     baseURL: process.env.BASE_URL,
     clientID: process.env.CLIENT_ID,
     secret: process.env.SECRET,
-    // idpLogout: true,
+    idpLogout: true,
   })
 );
 
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? `Logged in.<br><br> <a href="/profile">View profile</a><br><br><a href="/api-docs">Go to API Docs</a><br><br><a href="/logout">Logout</a>` : 'Logged out');
-  // require('./routes')
 });
 
 app.get('/profile', (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)
+// #swagger.tags = ['default']
+);
 
 app
   .use(bodyParser.json())
